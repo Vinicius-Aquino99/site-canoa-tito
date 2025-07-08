@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", function () {
   window.addEventListener('scroll', function () {
     var scrolled = window.scrollY;
     var parallax = document.querySelector('header');
-    parallax.style.backgroundPosition = 'center ' + (scrolled * 0.1) + 'px'
+    parallax.style.backgroundPosition = 'center ' + (scrolled * 0.2) + 'px'
 });
 
   const sections = document.querySelectorAll(".fade-section");

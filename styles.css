@@ -22,9 +22,6 @@ h3 {
   text-shadow: 2px 2px 2px #12182880;
 }
 
-body {
-  background-color: var(--azul-agua);
-}
 body,
 p {
   font-family: "Open Sans", sans-serif;
@@ -34,8 +31,7 @@ p {
 /* HERO */
 
 header {
-  background-attachment: fixed;
-  background-position: center;
+  background-position: center 0px;
   background-repeat: no-repeat;
   background-size: cover;
   background-image: url("fotos/Webp/canoa-azul2.webp");
