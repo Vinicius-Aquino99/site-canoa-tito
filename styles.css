@@ -31,7 +31,7 @@ p {
 /* HERO */
 
 header {
-  background-image: url("fotos/canoa-azul2.JPEG");
+  background-image: url("fotos/Webp/canoa-azul2.webp");
   background-size: cover;
   background-position: center;
   height: 100vh;
@@ -52,6 +52,7 @@ nav {
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 3;
 }
 
 nav ul {
@@ -104,9 +105,14 @@ nav ul a::before {
 }
 
 .container-home h2 {
+  transition-delay: 0.5s;
   color: var(--branco);
   letter-spacing: 0.3rem;
   line-height: 4rem;
+}
+
+.container-home a {
+  transition-delay: 1s;
 }
 
 .botao {
@@ -163,6 +169,7 @@ box-shadow: inset 5px 5px 10px #134c47,
 }
 
 .coluna-esquerda img {
+  transition-delay: 1s;
   width: 250px;
   border-radius: 50%;
 
@@ -173,11 +180,13 @@ box-shadow: inset 5px 5px 10px #134c47,
 }
 
 .coluna-esquerda h2 {
+  transition-delay: 1.3s;
   color: var(--branco);
   font-size: 40px;
 }
 
 .coluna-esquerda h3 {
+  transition-delay: 1.6s;
   color: var(--branco);
   font-family: "Open Sans", sans-serif;
 }
@@ -190,6 +199,7 @@ box-shadow: inset 5px 5px 10px #134c47,
 }
 
 .coluna-direita h2 {
+  transition-delay: 2.3s !important;
   color: var(--branco);
   border-bottom: 2px solid;
   width: 100%;
@@ -198,6 +208,7 @@ box-shadow: inset 5px 5px 10px #134c47,
 }
 
 .coluna-direita p {
+  transition-delay: 2.6s !important;
   margin-top: 2rem;
   color: var(--branco);
   text-indent: 2rem;
@@ -277,49 +288,69 @@ box-shadow: inset 5px 5px 10px #134c47,
 
 .container-fotos {
   display: flex;
-  flex-direction: row;
-  justify-content: flex-start; /* Alinha as imagens à esquerda */
   width: 100%;
-  align-items: center;
-  height: 500px;
-  overflow-x: auto; /* Ativa o scroll horizontal */
-  overflow-y: hidden; /* Desativa o scroll vertical */
-  gap: 1rem; /* Espaço entre as imagens */
-  padding: 0 8rem;
-  scroll-snap-type: x mandatory; /* Garante que o scroll vai ser suave, com imagens "presas" */
-  border-radius: 12px;
+  height: 300px;
+  overflow: hidden;
+  margin-top: 4rem;
+  gap: 5px;
 }
 
 .container-fotos img {
-  flex: 0 0 auto; /* Largura natural das imagens */
+  flex: 1 1 0;
+  min-width: 0;
   object-fit: cover;
-  height: 75%;
-  width: 150px; /* Largura mínima das imagens */
-  transition: all 0.5s ease-in-out; /* Transição suave */
+  transition: all 0.3s ease;
+  height: 100%;
   cursor: pointer;
-  border-radius: 12px; /* Bordas arredondadas */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra suave para profundidade */
-  scroll-snap-align: start; /* Garante que as imagens se alinhem ao começar o scroll */
+  display: inline-block;
+  object-position: center;
+  border-radius: 12px;
+  border: 2px solid var(--branco);
 }
 
 .container-fotos img:hover {
-  transform: scale(1.2); /* Aumenta suavemente a imagem ao passar o mouse */
-  width: 200px; /* Largura maior ao passar o mouse */
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Sombra mais intensa */
-  z-index: 3;
+  flex: 4 1 0;
+  height: 100%;
+  object-fit: cover; /* Força o mesmo comportamento para todas */
+  /* Novidade: */
+  aspect-ratio: 16/9; /* Força proporção horizontal no hover */
 }
 
-.container-fotos::-webkit-scrollbar {
-  height: 8px; /* Define a altura da barra de rolagem */
+.lightbox {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  justify-content: center;
+  align-items: center;
 }
 
-.container-fotos::-webkit-scrollbar-thumb {
-  background-color: rgba(0, 0, 0, 0.2); /* Cor do thumb da barra de rolagem */
-  border-radius: 10px;
+.lightbox-content {
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;
 }
 
-.container-fotos::-webkit-scrollbar-thumb:hover {
-  background-color: rgba(0, 0, 0, 0.4); /* Cor do thumb ao passar o mouse */
+.close-btn {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  color: white;
+  font-size: 35px;
+  cursor: pointer;
+}
+
+.gallery-img {
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.gallery-img.loaded {
+  opacity: 1;
 }
 
 /* contato */
@@ -356,3 +387,13 @@ i:hover {
   color: var(--azul-escuro);
 }
 
+.fade-section {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.fade-section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
