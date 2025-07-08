@@ -57,7 +57,7 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     },
     {
-      threshold: 0.1, // ativa quando 10% da seção aparece
+      threshold: 0.5, // ativa quando 10% da seção aparece
     }
   );
 
