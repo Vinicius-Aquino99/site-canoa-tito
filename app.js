@@ -45,6 +45,12 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
+  window.addEventListener('scroll', function () {
+    var scrolled = window.scrollY;
+    var parallax = document.querySelector('header');
+    parallax.style.backgroundPosition = 'center ' + (scrolled * 0.1) + 'px'
+});
+
   const sections = document.querySelectorAll(".fade-section");
 
   const observer = new IntersectionObserver(
@@ -57,7 +63,7 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     },
     {
-      threshold: 0.1, // ativa quando 10% da seção aparece
+      threshold: 0.5, // ativa quando 10% da seção aparece
     }
   );
 

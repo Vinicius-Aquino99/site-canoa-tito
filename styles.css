@@ -22,6 +22,9 @@ h3 {
   text-shadow: 2px 2px 2px #12182880;
 }
 
+body {
+  background-color: var(--azul-agua);
+}
 body,
 p {
   font-family: "Open Sans", sans-serif;
@@ -31,13 +34,17 @@ p {
 /* HERO */
 
 header {
-  background-image: url("fotos/Webp/canoa-azul2.webp");
-  background-size: cover;
+  background-attachment: fixed;
   background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url("fotos/Webp/canoa-azul2.webp");
   height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+  overflow: hidden;
 }
 
 nav {
@@ -96,6 +103,7 @@ nav ul a::before {
   display: flex;
   flex-direction: column;
   justify-content: end;
+  z-index: 2;
 }
 
 .container-home h1 {
