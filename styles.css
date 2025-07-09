@@ -422,6 +422,15 @@ i:hover {
   transform: translateY(0);
 }
 
+#lightbox .lightbox-scroll:not(.lightbox-scroll) img,
+#lightbox img {
+  max-width: 90vw;
+  max-height: 90vh;
+  margin: auto;
+  display: block;
+}
+
+
 @media (max-width: 576px) {
   body::-webkit-scrollbar {
     display: none;
@@ -584,27 +593,58 @@ i:hover {
   }
 
   .lightbox-scroll {
-    display: flex;
-    overflow-x: auto;
-    overflow-y: hidden;
-    max-width: 100%;
-    max-height: 80%;
-    white-space: nowrap;
-    padding: 10px;
-    scroll-snap-type: x mandatory;
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+  max-width: 100%;
+  max-height: 80%;
+  white-space: nowrap;
+  padding: 10px;
+  scroll-snap-type: x mandatory;
+}
+
+
+
+.lightbox-scroll img {
+  border-radius: 12px;
+  height: auto;
+  max-height: 100%;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+  margin: 0 10px;
+  scroll-snap-align: center;
+  flex-shrink: 0;
+}
+
+ /* Esconde scrollbar no Chrome, Edge e Safari */
+  body::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Esconde scrollbar no Firefox */
+  body {
+    scrollbar-width: none;
+  }
+  
+  /* Esconde scrollbar no IE e Edge antigos */
+  body {
+    -ms-overflow-style: none;
+  }
+  
+  /* Também pode esconder scrollbars de qualquer elemento com overflow */
+  /* Exemplo para lightbox-scroll, container-fotos e etc */
+  .container-fotos::-webkit-scrollbar,
+  .lightbox-scroll::-webkit-scrollbar {
+    display: none;
   }
 
-  .lightbox-scroll img {
-    border-radius: 12px;
-    height: auto;
-    max-height: 100%;
-    width: auto;
-    max-width: 100%;
-    object-fit: contain;
-    margin: 0 10px;
-    scroll-snap-align: center;
-    flex-shrink: 0;
+  .container-fotos,
+  .lightbox-scroll {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
   }
+
 }
 
 @media (max-width: 756px) {

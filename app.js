@@ -53,12 +53,16 @@ document.addEventListener("DOMContentLoaded", function () {
   const caption = document.getElementById("caption");
   const closeBtn = document.getElementById("closeBtn");
 
-  document.querySelectorAll(".gallery-img").forEach((img) => {
-    img.addEventListener("click", function () {
-      // Limpa imagens anteriores
-      lightboxScroll.innerHTML = "";
+  function isMobile() {
+    return window.matchMedia("(max-width: 576px)").matches;
+  }
 
-      // Adiciona todas as imagens da galeria
+  document.querySelectorAll(".gallery-img").forEach((img, index) => {
+  img.addEventListener("click", function () {
+    lightboxScroll.innerHTML = "";
+
+    if (isMobile()) {
+      // Versão Mobile: mostrar todas as imagens lado a lado (com scroll)
       const allImgs = document.querySelectorAll(".gallery-img");
       allImgs.forEach((galleryImg) => {
         const imgEl = document.createElement("img");
@@ -67,18 +71,28 @@ document.addEventListener("DOMContentLoaded", function () {
         lightboxScroll.appendChild(imgEl);
       });
 
-      // Abre o lightbox
-      lightbox.style.display = "flex";
-
       // Scroll para a imagem clicada
-      const index = [...allImgs].indexOf(this);
       const targetImg = lightboxScroll.children[index];
       lightboxScroll.scrollLeft = targetImg.offsetLeft;
 
-      // Atualiza legenda
-      caption.textContent = this.alt;
-    });
+      // Adiciona classe para scroll horizontal (opcional)
+      lightboxScroll.classList.add("lightbox-scroll");
+
+    } else {
+      // Versão Desktop: mostrar só a imagem clicada
+      const imgEl = document.createElement("img");
+      imgEl.src = img.dataset.src || img.src;
+      imgEl.alt = img.alt;
+      lightboxScroll.appendChild(imgEl);
+
+      // Remove classe scroll se existir
+      lightboxScroll.classList.remove("lightbox-scroll");
+    }
+
+    lightbox.style.display = "flex";
+    caption.textContent = this.alt;
   });
+});
 
   closeBtn.addEventListener("click", () => {
     lightbox.style.display = "none";
