@@ -431,7 +431,7 @@ i:hover {
 }
 
 
-@media (max-width: 756px) {
+@media (max-width: 900px) {
   body::-webkit-scrollbar {
     display: none;
   }
