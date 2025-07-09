@@ -477,6 +477,7 @@ i:hover {
   .container-home h2 {
     line-height: 2rem;
     font-size: 20px;
+    padding-bottom: 1rem;
   }
 
   .botao {
@@ -492,7 +493,7 @@ i:hover {
 
 #sobre {
   min-height: calc(100vh - 52px);
-  padding: 2rem;
+  padding: 0.5rem 1rem;
 }
 
 .container-sobre {
