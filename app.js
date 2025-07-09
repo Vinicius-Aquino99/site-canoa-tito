@@ -21,6 +21,32 @@ document.addEventListener("DOMContentLoaded", function () {
 
   lazyImages.forEach((img) => imageObserver.observe(img));
 
+  const menuToggle = document.getElementById("menu-toggle");
+  const menu = document.getElementById("menu");
+  const nav = document.querySelector('nav');
+
+  // Função para fechar o menu
+  function closeMenu() {
+    nav.classList.remove('active');
+  }
+
+  menuToggle.addEventListener("click", function (e) {
+    // Alterna a classe 'active' para mostrar/ocultar o menu
+    e.stopPropagation();
+    document.querySelector("nav").classList.toggle("active");
+  });
+
+  document.addEventListener('click', function (e) {
+    if (!nav.contains(e.target) && !menuToggle.contains(e.target)) {
+      closeMenu();
+    }
+  });
+
+  const menuLinks = document.querySelectorAll('nav ul a');
+  menuLinks.forEach(link => {
+    link.addEventListener('click', closeMenu);
+  });
+
   // Lightbox
   const lightbox = document.getElementById("lightbox");
   const lightboxImg = document.getElementById("lightbox-img");
@@ -45,11 +71,11 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  window.addEventListener('scroll', function () {
+  window.addEventListener("scroll", function () {
     var scrolled = window.scrollY;
-    var parallax = document.querySelector('header');
-    parallax.style.backgroundPosition = 'center ' + (scrolled * 0.2) + 'px'
-});
+    var parallax = document.querySelector("header");
+    parallax.style.backgroundPosition = "center " + scrolled * 0.2 + "px";
+  });
 
   const sections = document.querySelectorAll(".fade-section");
 
