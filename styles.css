@@ -431,7 +431,7 @@ i:hover {
 }
 
 
-@media (max-width: 576px) {
+@media (max-width: 756px) {
   body::-webkit-scrollbar {
     display: none;
   }
@@ -645,9 +645,6 @@ i:hover {
     -ms-overflow-style: none;
   }
 
-}
-
-@media (max-width: 756px) {
 }
 
 nav.active ul {
