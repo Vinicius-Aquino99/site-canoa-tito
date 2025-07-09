@@ -489,6 +489,10 @@ i:hover {
   transform: scale(105%);
   color: white;
   background-color: var(--azul-base);
+
+  }
+  .coluna-direita h2, .coluna-direita p, .coluna-esquerda img, .coluna-esquerda h2 {
+    transition-delay: 0;
 }
 
 #sobre {
