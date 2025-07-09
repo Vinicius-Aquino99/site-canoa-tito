@@ -23,11 +23,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const menuToggle = document.getElementById("menu-toggle");
   const menu = document.getElementById("menu");
-  const nav = document.querySelector('nav');
+  const nav = document.querySelector("nav");
 
   // Função para fechar o menu
   function closeMenu() {
-    nav.classList.remove('active');
+    nav.classList.remove("active");
   }
 
   menuToggle.addEventListener("click", function (e) {
@@ -36,27 +36,46 @@ document.addEventListener("DOMContentLoaded", function () {
     document.querySelector("nav").classList.toggle("active");
   });
 
-  document.addEventListener('click', function (e) {
+  document.addEventListener("click", function (e) {
     if (!nav.contains(e.target) && !menuToggle.contains(e.target)) {
       closeMenu();
     }
   });
 
-  const menuLinks = document.querySelectorAll('nav ul a');
-  menuLinks.forEach(link => {
-    link.addEventListener('click', closeMenu);
+  const menuLinks = document.querySelectorAll("nav ul a");
+  menuLinks.forEach((link) => {
+    link.addEventListener("click", closeMenu);
   });
 
   // Lightbox
   const lightbox = document.getElementById("lightbox");
-  const lightboxImg = document.getElementById("lightbox-img");
-  const caption = document.querySelector(".caption");
-  const closeBtn = document.querySelector(".close-btn");
+  const lightboxScroll = document.querySelector(".lightbox-scroll");
+  const caption = document.getElementById("caption");
+  const closeBtn = document.getElementById("closeBtn");
 
   document.querySelectorAll(".gallery-img").forEach((img) => {
     img.addEventListener("click", function () {
+      // Limpa imagens anteriores
+      lightboxScroll.innerHTML = "";
+
+      // Adiciona todas as imagens da galeria
+      const allImgs = document.querySelectorAll(".gallery-img");
+      allImgs.forEach((galleryImg) => {
+        const imgEl = document.createElement("img");
+        imgEl.src = galleryImg.dataset.src || galleryImg.src;
+        imgEl.alt = galleryImg.alt;
+        lightboxScroll.appendChild(imgEl);
+      });
+
+      // Abre o lightbox
       lightbox.style.display = "flex";
-      lightboxImg.src = this.dataset.src || this.src;
+
+      // Scroll para a imagem clicada
+      const index = [...allImgs].indexOf(this);
+      const targetImg = lightboxScroll.children[index];
+      lightboxScroll.scrollLeft = targetImg.offsetLeft;
+
+      // Atualiza legenda
       caption.textContent = this.alt;
     });
   });
